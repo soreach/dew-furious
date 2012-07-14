@@ -18,7 +18,7 @@ public class GestionCategoriasTest {
 		try {
 			negocio.insertar("Electrónicos", "Categoria de electrónicos");
 
-			Categoria nuevo = negocio.obtener(6);
+			Categoria nuevo = negocio.obtener(7);
 
 			Assert.assertEquals("Categoria de electrónicos", nuevo.getDescripcion());
 
