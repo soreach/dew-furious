@@ -9,45 +9,45 @@ public class AdmCliente {
 
 	
 
-	public Cliente ObtenerCliente(String codigo) throws DAOExcepcion  {
+	public Cliente ObtenerProspecto(String codigo) throws DAOExcepcion  {
 		Cliente objCliente=null;
 		ClienteDAO objClienteDAO=new ClienteDAO();
-		if(objClienteDAO.DAOexistecliente(codigo)==1){
-			objCliente=(Cliente)objClienteDAO.DAOobtenercliente(codigo);
+		if(objClienteDAO.DAOexisteprospecto(codigo)==1){
+			objCliente=(Cliente)objClienteDAO.DAOobtenerprospecto(codigo);
 		}
 		return objCliente;
 	}
 
 	
 
-	public void deletecliente(String codigo) throws DAOExcepcion{
+	public void deleteprospecto(String codigo) throws DAOExcepcion{
 		ClienteDAO objClienteDAO=new ClienteDAO();
-		int countcliente= objClienteDAO.DAOexistecliente(codigo);
+		int countcliente= objClienteDAO.DAOexisteprospecto(codigo);
 		
 		if(countcliente==1){
-			objClienteDAO.DAOdeletecliente(codigo);
+			objClienteDAO.DAOdeleteprospecto(codigo);
 		}
 		
 	}
 
-	public ArrayList<Cliente> listarclientes() throws DAOExcepcion{
+	public ArrayList<Cliente> listarprospectos() throws DAOExcepcion{
 		ClienteDAO objClienteDAO=new ClienteDAO();
-		return objClienteDAO.DAOlistarclientes();
+		return objClienteDAO.DAOlistarprospectos();
 	}
 
-	public void GrabarModificarCliente(String codigo, String nombre,
+	public void GrabarModificarProspecto(String codigo, String nombre,
 			String apellidopaterno, String apellidomaterno, String email,
 			String direccion, String imagen, String telefono, String celular) throws DAOExcepcion{
 		
 		Cliente objCliente=new Cliente(codigo,nombre,apellidopaterno,apellidomaterno,email,direccion,imagen, telefono, celular);
 		ClienteDAO objClienteDAO=new ClienteDAO();
-		if(objClienteDAO.DAOexistecliente(codigo)==0){
+		if(objClienteDAO.DAOexisteprospecto(codigo)==0){
 			String newcodigo=(objClienteDAO.DAOgetlastcodigo());
 			objCliente.setCodigo(newcodigo);
-			objClienteDAO.DAOgrabarcliente(objCliente);
+			objClienteDAO.DAOgrabarprospecto(objCliente);
 		}
-		if(objClienteDAO.DAOexistecliente(codigo)==1){
-			objClienteDAO.DAOmodificarcliente(objCliente);
+		if(objClienteDAO.DAOexisteprospecto(codigo)==1){
+			objClienteDAO.DAOmodificarprospecto(objCliente);
 		}
 		
 	}

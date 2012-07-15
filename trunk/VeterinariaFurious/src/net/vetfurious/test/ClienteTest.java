@@ -34,7 +34,7 @@ public class ClienteTest {
 	}
 	
 	@Test
-	public void cliente() {
+	public void prospecto() {
 		String codigo="0";
 		String nombre="jose";
 		String apellidopaterno="zamudio";
@@ -56,7 +56,7 @@ public class ClienteTest {
 	}
 	
 	@Test
-	public void grabarcliente() {
+	public void grabarprospecto() {
 		String codigo="0";
 		String nombre="jose";
 		String apellidopaterno="zamudio";
@@ -70,9 +70,9 @@ public class ClienteTest {
 		
 	    AdmCliente objAdmCliente= new AdmCliente();
 	    try {
-			objAdmCliente.GrabarModificarCliente(codigo,nombre,apellidopaterno,apellidomaterno,email,direccion,imagen,telefono,celular);
+			objAdmCliente.GrabarModificarProspecto(codigo,nombre,apellidopaterno,apellidomaterno,email,direccion,imagen,telefono,celular);
 		
-			Cliente objNewCliente=(Cliente)objAdmCliente.ObtenerCliente("1");
+			Cliente objNewCliente=(Cliente)objAdmCliente.ObtenerProspecto("1");
 		    assertNotNull(objNewCliente);
 		    
 	    } catch (DAOExcepcion e) {
@@ -85,11 +85,11 @@ public class ClienteTest {
 	
 	
 	@Test
-	public void modificarcliente() {
-		String codigo="1";
-		String nombre="jose2";
-		String apellidopaterno="zamudio2";
-		String apellidomaterno="risco2";
+	public void modificarprospecto() {
+		String codigo="2";
+		String nombre="jose3";
+		String apellidopaterno="zamudio3";
+		String apellidomaterno="risco3";
 		String email="libra2033@hotmail.com";
 		String direccion="SMP";
 		String imagen="";
@@ -98,9 +98,9 @@ public class ClienteTest {
 		
 		AdmCliente objAdmCliente= new AdmCliente();
 		try {
-			objAdmCliente.GrabarModificarCliente(codigo,nombre,apellidopaterno,apellidomaterno,email,direccion,imagen,telefono,celular);
+			objAdmCliente.GrabarModificarProspecto(codigo,nombre,apellidopaterno,apellidomaterno,email,direccion,imagen,telefono,celular);
 		
-			Cliente objNewCliente=(Cliente)objAdmCliente.ObtenerCliente("1");
+			Cliente objNewCliente=(Cliente)objAdmCliente.ObtenerProspecto(codigo);
 			assertTrue(objNewCliente.getNombre().equals(nombre));
 			assertTrue(objNewCliente.getApellidopaterno().equals(apellidopaterno));
 			assertTrue(objNewCliente.getApellidomaterno().equals(apellidomaterno));
@@ -119,14 +119,14 @@ public class ClienteTest {
 	}
 	
 	@Test
-	public void deletecliente() {
-		String codigo="3";
+	public void deleteprospecto() {
+		String codigo="5";
 				
 		AdmCliente objAdmCliente= new AdmCliente();
 		try {
-			objAdmCliente.deletecliente(codigo);
+			objAdmCliente.deleteprospecto(codigo);
 			
-			Cliente objNewCliente=(Cliente)objAdmCliente.ObtenerCliente("3");
+			Cliente objNewCliente=(Cliente)objAdmCliente.ObtenerProspecto("3");
 			
 			assertNull(objNewCliente);
 		} catch (DAOExcepcion e) {
@@ -138,12 +138,12 @@ public class ClienteTest {
 	
 	
 	@Test
-	public void listarcliente() {
+	public void listarprospectos() {
 				
 		AdmCliente objAdmCliente= new AdmCliente();
 		ArrayList<Cliente> Lista;
 		try {
-			Lista = (ArrayList<Cliente>)objAdmCliente.listarclientes();
+			Lista = (ArrayList<Cliente>)objAdmCliente.listarprospectos();
 			assertTrue(Lista.size()>0);
 			
 		} catch (DAOExcepcion e) {
