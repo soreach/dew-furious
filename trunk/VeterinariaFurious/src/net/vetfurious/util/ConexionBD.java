@@ -11,8 +11,8 @@ public class ConexionBD {
 		Connection con = null;
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			con = DriverManager.getConnection("jdbc:sqlserver://localhost/VeterinariaFurious","vetuser", "vetuser");
-			//con = DriverManager.getConnection("jdbc:sqlserver://localhost;databaseName=VeterinariaFurious","vetuser", "vetuser");
+			//con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433/VeterinariaFurious");
+			con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=VeterinariaFurious;user=vetuser;password=vetuser");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
