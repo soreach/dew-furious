@@ -84,7 +84,7 @@ public class DoctorDAO extends BaseDAO {
 	}
 
 	public Doctor actualizar(Doctor vo) throws DAOExcepcion {
-		String query = "update categoria set nombre=?,paterno=?,materno=?,email=?,telefono=?,username=? where doctorID=?";
+		String query = "update Doctor set nombre=?,paterno=?,materno=?,email=?,telefono=?,username=? where doctorID=?";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		try {
@@ -146,7 +146,7 @@ public class DoctorDAO extends BaseDAO {
 	}
 
 	public int existeDoctor(int idDoctor) throws DAOExcepcion {
-		String query = "SELECT count(*) AS contador FROM Doctor WHERE Persona_Id=?";
+		String query = "SELECT count(*) AS contador FROM Doctor WHERE doctorID=?";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -173,7 +173,7 @@ public class DoctorDAO extends BaseDAO {
 	}
 
 	public void eliminarDoctor(int idDoctor) throws DAOExcepcion {
-		String query = "DELETE FROM Doctor WHERE doctor_id=?";
+		String query = "DELETE FROM Doctor WHERE doctorID=?";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		try {
