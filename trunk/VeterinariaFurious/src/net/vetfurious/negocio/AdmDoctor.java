@@ -23,9 +23,9 @@ public class AdmDoctor {
 		return dao.insertar(vo);
 	}
 
-	public Doctor obtener(int idCategoria) throws DAOExcepcion {
+	public Doctor obtener(int doctorID) throws DAOExcepcion {
 		DoctorDAO dao = new DoctorDAO();
-		return dao.obtenerDoctor(idCategoria);
+		return dao.obtenerDoctor(doctorID);
 	}
 	
 	public Doctor obtenerDoctor(int idDoctor) throws DAOExcepcion  {
