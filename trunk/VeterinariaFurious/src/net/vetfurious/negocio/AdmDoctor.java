@@ -23,6 +23,11 @@ public class AdmDoctor {
 		return dao.insertar(vo);
 	}
 
+	public Doctor obtener(int idCategoria) throws DAOExcepcion {
+		DoctorDAO dao = new DoctorDAO();
+		return dao.obtenerDoctor(idCategoria);
+	}
+	
 	public Doctor obtenerDoctor(int idDoctor) throws DAOExcepcion  {
 		Doctor objDoctor=null;
 		DoctorDAO objDoctorDAO=new DoctorDAO();
@@ -31,6 +36,7 @@ public class AdmDoctor {
 			objDoctor=(Doctor)objDoctorDAO.obtenerDoctor(idDoctor);
 		}
 		return objDoctor;
+
 	}
 	
 	public Doctor actualizar(int doctorID, String nombre, String paterno, String materno, String email, String telefono, String usuario) throws DAOExcepcion {
