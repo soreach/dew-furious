@@ -23,8 +23,9 @@ public class DoctorDAO extends BaseDAO {
 			stmt.setString(1, vo.getNombre());
 			stmt.setString(2, vo.getPaterno());
 			stmt.setString(3, vo.getMaterno());
-			stmt.setString(2, vo.getEmail());
-			stmt.setString(3, vo.getUsuario());
+			stmt.setString(4, vo.getEmail());
+			stmt.setString(5, vo.getTelefono());
+			stmt.setString(6, vo.getUsuario());
 			
 			int i = stmt.executeUpdate();
 			if (i != 1) {
@@ -32,7 +33,7 @@ public class DoctorDAO extends BaseDAO {
 			}
 			// Obtener el ultimo id
 			int id = 0;
-			query = "select last_insert_id()";
+			query = "select @@IDENTITY";
 			stmt = con.prepareStatement(query);
 			rs = stmt.executeQuery();
 			if (rs.next()) {
