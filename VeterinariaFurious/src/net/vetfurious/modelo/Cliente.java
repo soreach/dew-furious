@@ -15,6 +15,7 @@ public class Cliente {
 	
 	public Cliente(String codigo,String nombre, String apellidopaterno,String apellidomaterno,String email, String direccion,
 			String imagen, String telefono, String celular) {
+		super();
 		this.codigo=codigo;
 		this.nombre=nombre;
 		this.apellidopaterno=apellidopaterno;
