@@ -29,6 +29,28 @@ public class AdmCliente {
 		}
 		
 	}
+	
+	
+	public Boolean changeProspectoToCliente(String codigo) throws DAOExcepcion
+	{
+		Boolean answer = false;
+		
+		ClienteDAO objClienteDAO =  new ClienteDAO();
+		int clienteExists = objClienteDAO.DAOexisteprospecto(codigo);
+		
+		if(clienteExists == 1)
+		{
+			if(objClienteDAO.DAOchangeProspectoToCliente(codigo)) answer = true;
+		}
+		
+		return answer; 
+	}
+	
+	public ArrayList<Cliente> listClientes() throws DAOExcepcion
+	{
+		ClienteDAO objClienteDAO=new ClienteDAO();
+		return objClienteDAO.DAOlistClientes();
+	}
 
 	public ArrayList<Cliente> listarprospectos() throws DAOExcepcion{
 		ClienteDAO objClienteDAO=new ClienteDAO();

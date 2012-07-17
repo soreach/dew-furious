@@ -5,6 +5,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import com.sun.security.ntlm.Client;
+
 import net.vetfurious.excepcion.DAOExcepcion;
 import net.vetfurious.modelo.Cliente;
 import net.vetfurious.util.ConexionBD;
@@ -60,6 +63,76 @@ public class ClienteDAO extends BaseDAO {
 
 		
 	}
+	
+	public Boolean DAOchangeProspectoToCliente(String codigo) throws DAOExcepcion
+	{
+		Boolean answer = false;
+		
+		String query = "UPDATE Cliente SET tipo_persona = 'C' WHERE Persona_Id = ?";
+		Connection con = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setInt(1,Integer.parseInt(codigo));
+			int i = stmt.executeUpdate();
+			if (i != 1) {
+				throw new SQLException("No se pudo Actualizar");
+			}
+			else
+			{
+				answer = true;
+			}
+			
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		
+		return answer;
+	}
+	
+	public ArrayList<Cliente> DAOlistClientes() throws DAOExcepcion
+	{
+		String query = "SELECT Persona_Id,Nombres,apellido_paterno,apellido_materno,email,telefono,direccion,imagen,celular FROM Cliente WHERE estado <> 'X' AND tipo_persona='C'";
+		ArrayList<Cliente> list = new ArrayList<Cliente>();
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				Cliente objCliente = new Cliente();
+				objCliente.setCodigo(rs.getString("Persona_Id"));
+				objCliente.setNombre(rs.getString("Nombres"));
+				objCliente.setApellidopaterno(rs.getString("apellido_paterno"));
+				objCliente.setApellidomaterno(rs.getString("apellido_materno"));
+				objCliente.setDireccion(rs.getString("direccion"));
+				objCliente.setEmail(rs.getString("email"));
+				objCliente.setImagen(rs.getString("imagen"));
+				objCliente.setTelefono(rs.getString("telefono"));
+				objCliente.setCelular(rs.getString("celular"));
+				list.add(objCliente);
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		System.out.println(list.size());
+		return list;
+
+	}
+	
 
 	public ArrayList<Cliente> DAOlistarprospectos() throws DAOExcepcion{
 		String query = "select Persona_Id,Nombres,apellido_paterno,apellido_materno,email,telefono,direccion,imagen,celular from Cliente where estado not in('X') and tipo_persona='P'";

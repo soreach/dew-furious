@@ -149,10 +149,42 @@ public class ClienteTest {
 		} catch (DAOExcepcion e) {
 			
 			Assert.fail("Falló el listado: " + e.getMessage());
-		}
-		
-		
+		}	
 		
 		
 	}
+	
+	@Test
+	public void changeProspectoToCliente()
+	{
+		String codigo = "2";
+		
+		AdmCliente objAdmCliente= new AdmCliente();
+		try {
+			Boolean answer =  objAdmCliente.changeProspectoToCliente(codigo);
+					
+			assertTrue(answer);
+		} catch (DAOExcepcion e) {
+			Assert.fail(e.getMessage());
+		}
+		
+	}
+	
+	
+	@Test
+	public void listClientes()
+	{
+		AdmCliente objAdmCliente= new AdmCliente();
+		ArrayList<Cliente> list;
+		try {
+			list = objAdmCliente.listClientes();
+			assertTrue(list.size()>0);
+			
+		} catch (DAOExcepcion e) {
+			
+			Assert.fail("Falló el listado: " + e.getMessage());
+		}	
+	
+	}
+	
 }
