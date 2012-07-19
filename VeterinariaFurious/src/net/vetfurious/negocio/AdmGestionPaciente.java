@@ -1,9 +1,10 @@
 package net.vetfurious.negocio;
 
 import java.util.Collection;
-import net.vetfurious.negocio.DAOExcepcion;
-import net.vetfurious.negocio.PacienteDAO;
-import net.vetfurious.negocio.Paciente;
+
+import net.vetfurious.excepcion.DAOExcepcion;
+import net.vetfurious.dao.PacienteDAO;
+import net.vetfurious.modelo.Paciente;
 
 public class AdmGestionPaciente {
         
@@ -30,7 +31,8 @@ public class AdmGestionPaciente {
                 vo.setPeso(peso);
                 vo.setFechaNacimiento(fechaNacimiento);
 
-                return dao.insertar(vo);
+                return insertar(vo);
+                
         }
 
         public Paciente obtener(String codigoDueno, String codigoPaciente, String especie, String raza, String genero, String tipoSangre, String esterilizado, String tamaño, String actividad, String peso, String fechaNacimiento) throws DAOExcepcion {
