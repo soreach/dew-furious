@@ -1,18 +1,17 @@
 package net.vetfurious.negocio;
 
+import java.util.ArrayList;
 import java.util.Collection;
-
-import net.vetfurious.excepcion.DAOExcepcion;
 import net.vetfurious.dao.PacienteDAO;
+import net.vetfurious.excepcion.DAOExcepcion;
 import net.vetfurious.modelo.Paciente;
 
 public class AdmGestionPaciente {
-        
 	
-        public Collection<Paciente> buscarPorCodigoPaciente(String codigoPaciente) throws DAOExcepcion {
-                PacienteDAO dao = new PacienteDAO();
-                return listar();
-        }
+//        public Collection<Paciente> buscarPorCodigoPaciente(String codigoPaciente) throws DAOExcepcion {
+//                PacienteDAO dao = new PacienteDAO();
+//                return listar();
+//        }
 
         public Paciente insertar(String codigoDueno, String codigoPaciente, String especie, String raza, String genero, String tipoSangre, String esterilizado, String tamaño, String actividad, String peso, String fechaNacimiento)
                         throws DAOExcepcion {
@@ -31,13 +30,13 @@ public class AdmGestionPaciente {
                 vo.setPeso(peso);
                 vo.setFechaNacimiento(fechaNacimiento);
 
-                return insertar(vo);
+                return dao.insertar(vo);
                 
         }
 
         public Paciente obtener(String codigoDueno, String codigoPaciente, String especie, String raza, String genero, String tipoSangre, String esterilizado, String tamaño, String actividad, String peso, String fechaNacimiento) throws DAOExcepcion {
             	                PacienteDAO dao = new PacienteDAO();
-                return dao.obtener(codigoDueno, codigoPaciente, especie, raza, genero, tipoSangre, esterilizado, tamaño, actividad, peso, fechaNacimiento);
+                return obtener(codigoDueno, codigoPaciente, especie, raza, genero, tipoSangre, esterilizado, tamaño, actividad, peso, fechaNacimiento);
         }
 
         public void eliminar(String codigoPaciente) throws DAOExcepcion {
@@ -52,7 +51,7 @@ public class AdmGestionPaciente {
                 Paciente vo = new Paciente();
                 vo.setCodigoDueno(codigoDueno);
                 vo.setCodigoPaciente(codigoPaciente);
-                vo.setEspeciePaciente(especiePaciente);
+                vo.setEspecie(especie);
 
                 return dao.actualizar(vo);
         }
