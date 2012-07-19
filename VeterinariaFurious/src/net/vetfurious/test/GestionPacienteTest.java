@@ -1,4 +1,4 @@
-package net.vetfurious.negocio;
+package net.vetfurious.test;
 
 //	package net.vetfurious.test;
 
