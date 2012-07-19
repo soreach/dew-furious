@@ -1,13 +1,14 @@
 package net.vetfurious.test;
 
-//	package net.vetfurious.test;
-
-//	import java.util.Collection;
+	import java.util.Collection;
 //	import junit.framework.Assert;
-//	import net.vetfurious.negocio.AdmGestionPaciente;
-
-import net.vetfurious.negocio.AdmGestionPaciente;	
+//	import static org.junit.Assert.*;
 //	import org.junit.Test;
+	import net.vetfurious.excepcion.DAOExcepcion;
+	import net.vetfurious.modelo.Paciente;
+	import java.util.ArrayList;
+	import java.util.Collection;
+	import net.vetfurious.negocio.AdmGestionPaciente;
 
 	public class GestionPacienteTest {
 	                
