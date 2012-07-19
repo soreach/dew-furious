@@ -6,10 +6,9 @@ package net.vetfurious.dao;
 	import java.sql.SQLException;
 	import java.util.ArrayList;
 	import java.util.Collection;
-
-	import net.vetfurious.negocio.DAOExcepcion;
-	import net.vetfurious.negocio.Paciente;
-import net.vetfurious.negocio.ConexionBD;
+	import net.vetfurious.excepcion.DAOExcepcion;
+	import net.vetfurious.modelo.Paciente;
+	import net.vetfurious.dao.ConexionBD;
 
 public class PacienteDAO extends BaseDAO {	
 	
