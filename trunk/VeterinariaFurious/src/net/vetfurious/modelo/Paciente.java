@@ -1,4 +1,4 @@
-package net.vetfurious.negocio;
+package net.vetfurious.modelo;
 
 	import java.util.Collection;
 
