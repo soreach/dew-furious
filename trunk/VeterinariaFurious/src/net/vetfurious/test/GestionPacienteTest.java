@@ -1,89 +1,93 @@
-package net.vetfurious.test;
+package net.vetfurious.negocio;
 
-import java.util.Collection;
-import junit.framework.Assert;
-import net.vetfurious.negocio.AdmGestionPaciente;
+//	package net.vetfurious.test;
 
-import org.junit.Test;
+//	import java.util.Collection;
+//	import junit.framework.Assert;
+//	import net.vetfurious.negocio.AdmGestionPaciente;
 
-public class GestionPacienteTest {
-		
-//		@Test
-		public void insertarTest() {
+import net.vetfurious.negocio.AdmGestionPaciente;	
+//	import org.junit.Test;
 
-			AdmGestionPaciente paciente = new AdmGestionPaciente();
-			
-			try {
-				paciente.insertar("Cliente001", "Paciente001", "Perro", "Pastor Aleman", "Macho", "Orh+", "Si", "Grande", "Media", "25kg", "02/04/2000");
+	public class GestionPacienteTest {
+	                
+//	              @Test
+	                public void insertarTest() {
 
-				Paciente nuevo = paciente.obtener();
+	                        AdmGestionPaciente paciente = new AdmGestionPaciente();
+	                        
+	                        try {
+	                                paciente.insertar("Cliente001", "Paciente001", "Perro", "Pastor Aleman", "Macho", "Orh+", "Si", "Grande", "Media", "25kg", "02/04/2000");
 
-				Assert.assertEquals("Pastor Aleman", nuevo.getRaza());
+	                                Paciente nuevo = paciente.obtener();
 
-			} catch (DAOExcepcion e) {
-				Assert.fail("Fallo la inserción: " + e.getMessage());
-			}
-		}
+	                                Assert.assertEquals("Pastor Aleman", nuevo.getRaza());
 
-//		@Test
-		public void actualizarTest() {
+	                        } catch (DAOExcepcion e) {
+	                                Assert.fail("Fallo la inserción: " + e.getMessage());
+	                        }
+	                }
 
-			AdmGestionPaciente paciente = new AdmGestionPaciente();
+//	              @Test
+	                public void actualizarTest() {
 
-			try {
+	                        AdmGestionPaciente paciente = new AdmGestionPaciente();
 
-				paciente.actualizar(2, "Gato", "Angora");
+	                        try {
 
-				Paciente nuevo = negocio.obtener(3);
+	                                paciente.actualizar(2, "Gato", "Angora");
 
-				Assert.assertEquals("Angora", nuevo.getRaza());
+	                                Paciente nuevo = negocio.obtener(3);
 
-			} catch (DAOExcepcion e) {
+	                                Assert.assertEquals("Angora", nuevo.getRaza());
 
-				Assert.fail("Falló la actualización: " + e.getMessage());
+	                        } catch (DAOExcepcion e) {
 
-			}
-		}
-		
-//		@Test
-		public void listarTest() {
+	                                Assert.fail("Falló la actualización: " + e.getMessage());
 
-			AdmGestionPaciente paciente = new AdmGestionPaciente();
+	                        }
+	                }
+	                
+//	              @Test
+	                public void listarTest() {
 
-			try {
-				Arraylist<Paciente> listado = paciente.listar();
+	                        AdmGestionPaciente paciente = new AdmGestionPaciente();
 
-				System.out.println(listado.size());
+	                        try {
+	                                Arraylist<Paciente> listado = paciente.listar();
 
-				Assert.assertTrue(listado.size() > 0);
+	                                System.out.println(listado.size());
 
-			} catch (DAOExcepcion e) {
+	                                Assert.assertTrue(listado.size() > 0);
 
-				Assert.fail("Falló el listado: " + e.getMessage());
+	                        } catch (DAOExcepcion e) {
 
-			}
+	                                Assert.fail("Falló el listado: " + e.getMessage());
 
-		}
+	                        }
 
-		@Test
-		public void eliminarTest() {
+	                }
 
-			AdmGestionPaciente paciente = new AdmGestionPaciente();
+	                @Test
+	                public void eliminarTest() {
 
-			try {
+	                        AdmGestionPaciente paciente = new AdmGestionPaciente();
 
-				paciente.eliminar(6);
+	                        try {
 
-				Paciente nuevo = negocio.obtener(6);
+	                                paciente.eliminar(6);
 
-				Assert.assertEquals(null, nuevo.getDescripcion());
+	                                Paciente nuevo = negocio.obtener(6);
 
-			} catch (DAOExcepcion e) {
+	                                Assert.assertEquals(null, nuevo.getDescripcion());
 
-				Assert.fail("Falló la eliminición: " + e.getMessage());
+	                        } catch (DAOExcepcion e) {
 
-			}
+	                                Assert.fail("Falló la eliminición: " + e.getMessage());
 
-		}
+	                        }
 
-	}
+	                }
+
+	        }
+
