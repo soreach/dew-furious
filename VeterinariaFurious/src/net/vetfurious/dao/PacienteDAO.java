@@ -1,4 +1,4 @@
-package net.vetfurious.negocio;
+package net.vetfurious.dao;
 
 	import java.sql.Connection;
 	import java.sql.PreparedStatement;
