@@ -5,13 +5,111 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Team Furious</title>
+    
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    
+    
+    <style type="text/css" media="screen">
+            .slides_container {
+                width:950px;
+                height:463px;
+            }
+            .slides_container div {
+                width:950px;
+                height:463px;
+                display:block;
+            }
+        </style>
+    
   </head>
   <body>
-    <h1>Spring-JPA-MVC --- Furious</h1>
-    <ul>
-      <li><a href="forms/listarcliente.jsp">CLIENTES</a></li>
-      <li><a href="forms/listardoctor.jsp">DOCTORES</a></li>
+    
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Team Furious</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Inicio</a></li>
+              <li><a href="forms/listarcliente.jsp">Clientes</a></li>
+              <li><a href="forms/listardoctor.jsp">Doctores</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="container" style="width: 1076px;">
 
-    </ul>
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        <h2>Veterinaria Furious</h2>
+      
+        <div id="slides">
+            <div class="slides_container">
+                <div>
+                    <img src="images/slides/01.jpg">
+                </div>
+                <div>
+                    <img src="images/slides/02.jpg">
+                </div>
+                <div>
+                    <img src="images/slides/03.jpg">
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+      </div>
+
+      <footer>
+        <p>&copy; Furious LLC 2012</p>
+      </footer>
+
+    </div> 
+    
+
+    
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="js/slides.min.jquery.js"></script>
+    <script language="javascript">
+
+    $(function(){
+        $("#slides").slides({
+        	play: 5000,			
+
+        });
+    });
+    
+    </script>
+    
+    
   </body>
 </html>
