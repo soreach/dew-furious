@@ -9,6 +9,7 @@
  
   <!-- Le styles -->
     <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="../css/DT_bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -35,13 +36,26 @@
 	
 	<div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
-        <div class="container">
+        <div class="container-fluid">
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="#">Team Furious</a>
+          
+          <div class="btn-group pull-right">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+              <i class="icon-user"></i> Username
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Profile</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Sign Out</a></li>
+            </ul>
+          </div>
+          
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="../index.jsp">Inicio</a></li>
@@ -61,36 +75,38 @@
 		<form action="verRegistroCliente.jsp" method="get">
 			<input type="submit" name="btnNuevo" id="btnNuevo" value="Nuevo" class="btn btn-primary btn-larg" />
 		</form>
-		<table border="1">
-			<tr>
-				<th>Nombre</th>
-				<th>Apellido Paterno</th>
-				<th>Apellido Materno</th>
-				<th>Direccion</th>
-				<th>Telefono</th>
-				<td>Editar</td>
-				<td>Eliminar</td>
-
-			</tr>
-			
-			<c:forEach items="${model.clientes}" var="prod" varStatus="i">
-			<tr>
-				<td width="100">${prod.nombre}</td>
-				<td>${prod.apellidopaterno}</td>
-				<td>${prod.apellidomaterno}</td>
-				<td>${prod.direccion}</td>
-				<td>${prod.telefono}</td>
-				<td align="center"><a
-						href="editarCliente.jsp?id=${prod.codigo}"> <img
-							src="images/editar.jpg" alt="" title="" border="0" />
-					</a></td>
-				<td align="center"><a
-						href="eliminarCliente.jsp?id=${prod.codigo}"><img
-							src="images/delete.gif" alt="" title="" border="0" /></a>
-				</td>
-			</tr>
-			</c:forEach>
-			
+		<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
+			<thead>	
+				<tr>
+					<th>Nombre</th>
+					<th>Apellido Paterno</th>
+					<th>Apellido Materno</th>
+					<th>Direccion</th>
+					<th>Telefono</th>
+					<td>Editar</td>
+					<td>Eliminar</td>
+	
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${model.clientes}" var="prod" varStatus="i">
+				<tr>
+					<td width="100">${prod.nombre}</td>
+					<td>${prod.apellidopaterno}</td>
+					<td>${prod.apellidomaterno}</td>
+					<td>${prod.direccion}</td>
+					<td>${prod.telefono}</td>
+					<td align="center"><a
+							href="editarCliente.jsp?id=${prod.codigo}"> <img
+								src="images/editar.jpg" alt="" title="" border="0" />
+						</a></td>
+					<td align="center"><a
+							href="eliminarCliente.jsp?id=${prod.codigo}"><img
+								src="images/delete.gif" alt="" title="" border="0" /></a>
+					</td>
+				</tr>
+				</c:forEach>
+			</tbody>
 		</table>
       </div>
 
@@ -99,6 +115,26 @@
       </footer>
 
     </div> 
+    
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" charset="utf-8" language="javascript" src="../js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf-8" language="javascript" src="../js/DT_bootstrap.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script language="javascript">
+
+    $(function(){
+        $('.row').each(function(){
+
+    		$(this).find('.span6').first().css('width', '354px');
+        });
+    });
+    
+    </script>
 	
 	</body>
 </html>
