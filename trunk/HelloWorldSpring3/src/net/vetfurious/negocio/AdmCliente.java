@@ -61,7 +61,6 @@ public class AdmCliente implements ICliente {
 	
 	public void GrabarModificarProspecto(Cliente cli) throws DAOExcepcion{
 		
-		Cliente objCliente=new Cliente();
 		ClienteDAO objClienteDAO=new ClienteDAO();
 		if(objClienteDAO.DAOexisteprospecto(cli.getCodigo())==0){
 			String newcodigo=(objClienteDAO.DAOgetlastcodigo());
