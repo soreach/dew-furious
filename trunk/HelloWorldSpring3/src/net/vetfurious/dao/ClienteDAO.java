@@ -1,4 +1,5 @@
 package net.vetfurious.dao;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.sql.Connection;
@@ -97,7 +98,7 @@ public class ClienteDAO extends BaseDAO {
 	}
 
 	public void DAOgrabarprospecto(Cliente objCliente) throws DAOExcepcion{
-		String query = "INSERT INTO Cliente(Persona_Id,Nombres,apellido_paterno,apellido_materno,email,direccion,imagen,telefono,celular,tipo_persona,estado) values (?,?,?,?,?,?,?,?,?,?,?)";
+		String query = "INSERT INTO Cliente(Persona_Id,Nombres,apellido_paterno,apellido_materno,email,direccion,telefono,celular,tipo_persona,estado) values (?,?,?,?,?,?,?,?,?,?)";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -110,11 +111,10 @@ public class ClienteDAO extends BaseDAO {
 			stmt.setString(4, objCliente.getApellidomaterno());
 			stmt.setString(5, objCliente.getEmail());
 			stmt.setString(6, objCliente.getDireccion());
-			stmt.setString(7, objCliente.getImagen());
-			stmt.setString(8, objCliente.getTelefono());
-			stmt.setString(9, objCliente.getCelular());
-			stmt.setString(10,"C");
-			stmt.setString(11,"A");
+			stmt.setString(7, objCliente.getTelefono());
+			stmt.setString(8, objCliente.getCelular());
+			stmt.setString(9,"P");
+			stmt.setString(10,"A");
 			int i = stmt.executeUpdate();
 			if (i != 1) {
 				throw new SQLException("No se pudo insertar");
@@ -132,7 +132,7 @@ public class ClienteDAO extends BaseDAO {
 	}
 
 	public void DAOmodificarprospecto(Cliente objCliente) throws DAOExcepcion{
-		String query = "update Cliente set Nombres=?,apellido_paterno=?,apellido_materno=?,email=?,direccion=?,imagen=?,telefono=?,celular=? where Persona_Id=?";
+		String query = "update Cliente set Nombres=?,apellido_paterno=?,apellido_materno=?,email=?,direccion=?,telefono=?,celular=? where Persona_Id=?";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		try {
@@ -143,10 +143,9 @@ public class ClienteDAO extends BaseDAO {
 			stmt.setString(3, objCliente.getApellidomaterno());
 			stmt.setString(4, objCliente.getEmail());
 			stmt.setString(5, objCliente.getDireccion());
-			stmt.setString(6, objCliente.getImagen());
-			stmt.setString(7, objCliente.getTelefono());
-			stmt.setString(8, objCliente.getCelular());
-			stmt.setString(9, objCliente.getCodigo());
+			stmt.setString(6, objCliente.getTelefono());
+			stmt.setString(7, objCliente.getCelular());
+			stmt.setString(8, objCliente.getCodigo());
 			int i = stmt.executeUpdate();
 			if (i != 1) {
 				throw new SQLException("No se pudo actualizar");
@@ -293,6 +292,29 @@ public class ClienteDAO extends BaseDAO {
 		System.out.println(list.size());
 		return list;
 
+	}
+	
+	public void UpdateFoto(String codigo,String foto) throws DAOExcepcion{
+		String query = "update Cliente set imagen=? where Persona_Id=?";
+		Connection con = null;
+		PreparedStatement stmt = null;
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setString(1,foto);
+			stmt.setString(2,codigo);
+			int i = stmt.executeUpdate();
+			if (i != 1) {
+				throw new SQLException("No se pudo actualizar");
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+				
 	}
 	
 }
