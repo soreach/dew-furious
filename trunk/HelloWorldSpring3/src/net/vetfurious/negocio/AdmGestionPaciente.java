@@ -1,67 +1,74 @@
 package net.vetfurious.negocio;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import net.vetfurious.dao.PacienteDAO;
+import java.util.List;
+import org.springframework.stereotype.Service;
+import net.vetfurious.modelo.*;
+import net.vetfurious.dao.*;
 import net.vetfurious.excepcion.DAOExcepcion;
-import net.vetfurious.modelo.Paciente;
 
-public class AdmGestionPaciente {
+@Service
+public class AdmGestionPaciente implements IPaciente {
         
-//        public Collection<Paciente> buscarPorCodigoPaciente(String codigoPaciente) throws DAOExcepcion {
-//                PacienteDAO dao = new PacienteDAO();
-//                return listar();
-//        }
 
-        public Paciente insertar(String codigoDueno, String codigoPaciente, String especie, String raza, String genero, String tipoSangre, String esterilizado, String tamaño, String actividad, String peso, String fechaNacimiento)
-                        throws DAOExcepcion {
-                PacienteDAO dao = new PacienteDAO();
-
-                Paciente vo = new Paciente();
-                vo.setCodigoDueno(codigoDueno);
-                vo.setCodigoPaciente(codigoPaciente);
-                vo.setEspecie(especie);
-                vo.setRaza(raza);
-                vo.setGenero(genero);
-                vo.setTipoSangre(tipoSangre);
-                vo.setEsterilizado(esterilizado);
-                vo.setTamaño(tamaño);
-                vo.setActividad(actividad);
-                vo.setPeso(peso);
-                vo.setFechaNacimiento(fechaNacimiento);
-
-                return dao.insertar(vo);
+        @Override
+		public void insertarPaciente(String codigoDueno, String codigoPaciente, String especie, 
+				String raza, String genero, String tipoSangre, String esterilizado, String tamano, 
+				String actividad, String peso, String fechaNacimiento) throws DAOExcepcion {
+        	
+                Paciente objPaciente = new Paciente(codigoDueno, codigoPaciente, especie, raza, genero, tipoSangre, esterilizado, tamano, actividad, peso, fechaNacimiento);
+                PacienteDAO objPacienteDAO = new PacienteDAO();
                 
-        }
+                objPaciente.setCodigoDueno(codigoDueno);
+                objPaciente.setCodigoPaciente(codigoPaciente);
+                objPaciente.setEspecie(especie);
+                objPaciente.setRaza(raza);
+                objPaciente.setGenero(genero);
+                objPaciente.setTipoSangre(tipoSangre);
+                objPaciente.setEsterilizado(esterilizado);
+                objPaciente.setTamano(tamano);
+                objPaciente.setActividad(actividad);
+                objPaciente.setPeso(peso);
+                objPaciente.setFechaNacimiento(fechaNacimiento);
+            	objPacienteDAO.DAOinsertarPacientes(objPaciente);
+           }
 
-//        public Paciente obtener(String codigoDueno, String codigoPaciente, String especie, String raza, String genero, String tipoSangre, String esterilizado, String tamaño, String actividad, String peso, String fechaNacimiento) throws DAOExcepcion {
-        public Paciente obtener(String codigoDueno) throws DAOExcepcion {
+        @Override
+		public Paciente obtenerPaciente(String codigoDueno) throws DAOExcepcion {
             	 
         	PacienteDAO dao = new PacienteDAO();
                 return dao.obtenerPaciente(codigoDueno);
         }
 
-        public void eliminar(String codigoPaciente) throws DAOExcepcion {
-                PacienteDAO dao = new PacienteDAO();
-                eliminar(codigoPaciente);
+        @Override
+		public void eliminarPaciente(String codigoDueno) throws DAOExcepcion {
+                PacienteDAO objPaciente = new PacienteDAO();
+                objPaciente.eliminarPaciente(codigoDueno);
         }
 
-        public Paciente actualizar(String codigoDueno, String especie, String raza) throws DAOExcepcion {
+        @Override
+		public Paciente actualizarPaciente(String codigoDueno, String codigoPaciente, String especie, 
+				String raza, String genero,	String tipoSangre, String esterilizado, String tamano,
+				String actividad, String peso, String fechaNacimiento) throws DAOExcepcion {
                 PacienteDAO dao = new PacienteDAO();
 
-                Paciente vo = new Paciente();
-                vo.setCodigoDueno(codigoDueno);
-                vo.setEspecie(especie);
-                vo.setRaza(raza);
+                Paciente objPaciente = new Paciente();
+                objPaciente.setCodigoDueno(codigoDueno);
+                objPaciente.setEspecie(especie);
+                objPaciente.setRaza(raza);
 
-                return dao.actualizar(vo);
+                return dao.actualizar(objPaciente);
         }
 
-//        public Collection<Paciente> listar() throws DAOExcepcion {
-        public ArrayList<Paciente> listar() throws DAOExcepcion {
-                PacienteDAO dao = new PacienteDAO();
-                return dao.listar();
+      
+        @Override
+		public List<Paciente> listarPacientes() throws DAOExcepcion {
+                PacienteDAO objPacienteDAO = new PacienteDAO();
+                return objPacienteDAO.listarPacientes();
         }
 
-
+        @Override
+        public void insertar(Paciente oModelPaciente) {
+        	// TODO Auto-generated method stub
+	
+        }
 }
