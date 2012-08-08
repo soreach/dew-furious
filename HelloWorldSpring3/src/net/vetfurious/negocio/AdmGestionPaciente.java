@@ -7,68 +7,69 @@ import net.vetfurious.dao.*;
 import net.vetfurious.excepcion.DAOExcepcion;
 
 @Service
-public class AdmGestionPaciente implements IPaciente {
+public class AdmGestionPaciente implements IPaciente  {
         
 
-        @Override
-		public void insertarPaciente(String codigoDueno, String codigoPaciente, String especie, 
-				String raza, String genero, String tipoSangre, String esterilizado, String tamano, 
-				String actividad, String peso, String fechaNacimiento) throws DAOExcepcion {
-        	
-                Paciente objPaciente = new Paciente(codigoDueno, codigoPaciente, especie, raza, genero, tipoSangre, esterilizado, tamano, actividad, peso, fechaNacimiento);
+        /* (non-Javadoc)
+		 * @see net.vetfurious.negocio.IPaciente#insertarPaciente(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+		 */
+
+		@Override
+		public void insertarPaciente(Paciente pac) throws DAOExcepcion {
+
                 PacienteDAO objPacienteDAO = new PacienteDAO();
-                
-                objPaciente.setCodigoDueno(codigoDueno);
-                objPaciente.setCodigoPaciente(codigoPaciente);
-                objPaciente.setEspecie(especie);
-                objPaciente.setRaza(raza);
-                objPaciente.setGenero(genero);
-                objPaciente.setTipoSangre(tipoSangre);
-                objPaciente.setEsterilizado(esterilizado);
-                objPaciente.setTamano(tamano);
-                objPaciente.setActividad(actividad);
-                objPaciente.setPeso(peso);
-                objPaciente.setFechaNacimiento(fechaNacimiento);
-            	objPacienteDAO.DAOinsertarPacientes(objPaciente);
+
+            	objPacienteDAO.DAOinsertarPacientes(pac);
            }
 
-        @Override
-		public Paciente obtenerPaciente(String codigoDueno) throws DAOExcepcion {
+        /* (non-Javadoc)
+		 * @see net.vetfurious.negocio.IPaciente#obtenerPaciente(java.lang.String)
+		 */
+
+		@Override
+		public Paciente obtenerPaciente(int codigoPaciente) throws DAOExcepcion {
             	 
         	PacienteDAO dao = new PacienteDAO();
-                return dao.obtenerPaciente(codigoDueno);
+                return dao.obtenerPaciente(codigoPaciente);
         }
 
-        @Override
-		public void eliminarPaciente(String codigoDueno) throws DAOExcepcion {
+        /* (non-Javadoc)
+		 * @see net.vetfurious.negocio.IPaciente#deleteaciente(java.lang.String)
+		 */
+ 
+		@Override
+		public void deletepaciente(int codigoPaciente) throws DAOExcepcion {
                 PacienteDAO objPaciente = new PacienteDAO();
-                objPaciente.eliminarPaciente(codigoDueno);
+                objPaciente.eliminarPaciente(codigoPaciente);
         }
 
-        @Override
-		public Paciente actualizarPaciente(String codigoDueno, String codigoPaciente, String especie, 
-				String raza, String genero,	String tipoSangre, String esterilizado, String tamano,
-				String actividad, String peso, String fechaNacimiento) throws DAOExcepcion {
+        /* (non-Javadoc)
+		 * @see net.vetfurious.negocio.IPaciente#GrabarModificarPaciente(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+		 */
+  
+		@Override
+		public void GrabarModificarPaciente(Paciente pac) throws DAOExcepcion {
                 PacienteDAO dao = new PacienteDAO();
-
-                Paciente objPaciente = new Paciente();
-                objPaciente.setCodigoDueno(codigoDueno);
-                objPaciente.setEspecie(especie);
-                objPaciente.setRaza(raza);
-
-                return dao.actualizar(objPaciente);
+                
+                PacienteDAO objPacienteDAO=new PacienteDAO();
+        		if(objPacienteDAO.DAOexistepaciente(pac.getCodigoPaciente())==0){
+        			objPacienteDAO.DAOinsertarPacientes(pac);
+        		}
+        		if(objPacienteDAO.DAOexistepaciente(pac.getCodigoPaciente())==1){
+        			objPacienteDAO.modificarPaciente(pac);
+        		}
         }
 
       
-        @Override
+        /* (non-Javadoc)
+		 * @see net.vetfurious.negocio.IPaciente#listarPacientes()
+		 */
+
+		@Override
 		public List<Paciente> listarPacientes() throws DAOExcepcion {
                 PacienteDAO objPacienteDAO = new PacienteDAO();
                 return objPacienteDAO.listarPacientes();
         }
 
-        @Override
-        public void insertar(Paciente oModelPaciente) {
-        	// TODO Auto-generated method stub
-	
-        }
+
 }
