@@ -62,8 +62,10 @@
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="#">Inicio</a></li>
-              <li><a href="forms/listarcliente.jsp">Clientes</a></li>
-              <li><a href="forms/listardoctor.jsp">Doctores</a></li>
+              <li><a href="forms/listarcliente.jsp">Prospectos</a></li>
+              <li><a href="forms/listarcliente2.jsp">Clientes</a></li>
+      		  <li><a href="forms/listardoctor.jsp">Doctores</a></li>
+	          <li><a href="forms/listarfacturas.jsp">Facturacion</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
