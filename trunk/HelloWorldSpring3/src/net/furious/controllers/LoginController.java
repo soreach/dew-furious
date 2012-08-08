@@ -14,6 +14,7 @@ import net.vetfurious.modelo.Login;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,14 +27,19 @@ public class LoginController {
 	private ILogin iLogin;
 
 	@RequestMapping(value = "/editarLogin", method = RequestMethod.POST)
-	public ModelAndView editar(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public ModelAndView j_spring_security_check(HttpServletRequest request, HttpServletResponse response) 
+	throws ServletException, IOException, Exception {
 		Login oModelLogin = new Login();
-		oModelLogin.setUsuario(request.getParameter("txtUsuario"));
-		oModelLogin.setPassword(request.getParameter("txtPassword"));
+		oModelLogin.setUsuario(request.getParameter("Usuario"));
+		oModelLogin.setPassword(request.getParameter("Password"));
 		
 		oModelLogin = iLogin.ObtenerCredenciales(oModelLogin);
 	
 		return new ModelAndView("editarLogin", "model", oModelLogin);
+	}
+	
+	@ExceptionHandler(Exception.class)	
+	public ModelAndView Exception(Exception e , HttpServletRequest request){		
+		return new ModelAndView("/error", "mensaje", e.getMessage());	
 	}
 }
