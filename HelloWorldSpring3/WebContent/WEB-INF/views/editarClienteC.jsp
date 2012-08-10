@@ -5,13 +5,14 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Veterinaria - Mantenimiento de Prospectos::.. Editar un Prospecto</title>
+<title>Veterinaria - Mantenimiento de Clientes::.. Editar un Cliente</title>
 <link href="css/style.css" rel="stylesheet" />
 <script src="js/jquery-1.7.2.min.js" type="text/javascript"
 	charset="utf-8"></script>
 <link href="css/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
 <script src="js/jquery-ui-1.8.20.custom.min.js" type="text/javascript"
 	charset="utf-8"></script>
+
 <script>
 	$(function() {
 		$( "#datepicker" ).datepicker({ autoSize: true });
@@ -91,21 +92,20 @@ function validar(){
 }
 -->
 </style>
-
 </head>
 <body>
 
 	<div class="center_content">
-	<h3>Mantenimiento de Prospectos</h3>
-	<form action="guardarModificacionCliente.jsp" method="post">
+	<h3>Mantenimiento de Clientes</h3>
+	<form action="guardarModificacionClienteC.jsp" method="post">
 		<table>
 			<tr>
-				<td>Código Prospecto:</td>
+				<td>Código Cliente:</td>
 				<td><input id="id" name="id" value="${requestScope.model.codigo}" readonly="readonly"/></td>
 			</tr>
 			<tr>
 				<td>Nombre:</td>
-				<td><input id="txtNombre" name="txtNombre"  value="${requestScope.model.nombre}" maxlength="50"/></td>
+				<td><input id="txtNombre" name="txtNombre" value="${requestScope.model.nombre}" maxlength="50"/></td>
 			</tr>
 			<tr>
 				<td>Apellido Paterno:</td>
@@ -123,12 +123,12 @@ function validar(){
 			<tr>
 				<td>Dirección:</td>
 				<td><textarea rows="3" cols="20" name="txtDireccion"
-						id="txtDireccion"  maxlength="150">${requestScope.model.direccion}</textarea></td>
+						id="txtDireccion" maxlength="150">${requestScope.model.direccion}</textarea></td>
 			</tr>
 			<tr>
 				<td>Email:</td>
 				<td><input name="txtEmail"
-						id="txtEmail" value="${requestScope.model.email}" maxlength="30" /></td>
+						id="txtEmail" value="${requestScope.model.email}" maxlength="30"/></td>
 			</tr>
 			<tr>
 				<td>Teléfono:</td>
@@ -143,13 +143,13 @@ function validar(){
 			<tr>
 				<td>Foto:</td>
 				<td>
-				<img alt="" width="100px" height="100px" src="C:\\Users\\operador\\workspace\\HelloWorldSpring3\\WebContent\\Fotos\\'${requestScope.model.imagen}" />
+				<img alt="" width="80px" height="80px" src="D:\\Eclipse\\HelloWorldSpring3\\WebContent\\Fotos\\'${requestScope.model.imagen}" />
 				<input type="button" name="btnFoto" id="btnFoto" onclick="AbrirUpload();"></td>
 			</tr>
 			<tr>
-				<td><input type="submit" value="Guardar" onclick="return validar();"
-					name="btnRegistrar" /> </td>
-					<td><a href="listarcliente.jsp">Cancelar</a></td>
+				<td ><input type="submit" value="Guardar" onclick="return validar();" 
+					name="btnRegistrar" /></td>
+					<td><a href="listarcliente2.jsp">Cancelar</a></td>
 			</tr>
 			
 		</table>

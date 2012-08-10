@@ -41,7 +41,15 @@ public class FacturaController {
 		Map<String, Object> myModel = new HashMap<String, Object>();
 		myModel.put("facturas",facturas);
        
-        return new ModelAndView("listarfacturas", "model", myModel);
+		String mensaje="";
+		if(request.getParameter("mensaje")!=null){
+			mensaje=request.getParameter("mensaje");
+		}
+		
+		ModelAndView mav = new ModelAndView("listarfacturas");
+        mav.addObject("model",myModel);
+        mav.addObject("mensaje", mensaje);
+        return mav;
 
     }
 	
@@ -50,7 +58,14 @@ public class FacturaController {
             throws ServletException, IOException, DAOExcepcion {
 		
        Factura objNewFactura=Factura.iniciarfactura();
-	   return new ModelAndView("factura", "model", objNewFactura);
+       
+       ModelAndView mav = new ModelAndView("factura");
+       mav.addObject("model",objNewFactura);
+       mav.addObject("accion","-1");
+       return mav;
+       
+	   //return new ModelAndView("factura", "model", objNewFactura);
+	   
 
     }
 	
@@ -62,7 +77,7 @@ public class FacturaController {
 		
 		Map<String, Object> myModel = new HashMap<String, Object>();
 		myModel.put("clientes",clientes);
-       
+		
         return new ModelAndView("buscacliente","model", myModel);
 
     }
@@ -97,14 +112,12 @@ public class FacturaController {
             throws ServletException, IOException, DAOExcepcion {
 	
 		Factura.ElimnarFactura(Integer.parseInt(request.getParameter("id")));
-		
 		System.out.println("eliminarfactura");
-		List<FacturaCliente> facturas = this.Factura.ListarFacturas();
 		
-		Map<String, Object> myModel = new HashMap<String, Object>();
-		myModel.put("facturas",facturas);
-       
-        return new ModelAndView("listarfacturas", "model", myModel);
+		ModelAndView mav = new ModelAndView("redirect:listarfacturas");
+        mav.addObject("mensaje",new String ("Factura eliminada!!!"));
+        return mav;
+
     }
 	
 	@RequestMapping(value="/verfactura")
@@ -135,35 +148,54 @@ public class FacturaController {
 		objFactura.setFeRegistro(request.getParameter("txtfecha"));
 		
 		if(accion.equals("1")){
-			Factura.GrabarFactura(objFactura);
-			return new ModelAndView("redirect:listarfacturas");
-		}else{
-			FacturaDetalle objFacturaDetalle=new FacturaDetalle();
-			objFacturaDetalle.setCodFactura(Integer.parseInt(request.getParameter("txtfactura")));
-			objFacturaDetalle.setCodProducto(Integer.parseInt(request.getParameter("idproducto")));
-			objFacturaDetalle.setProducto(request.getParameter("nombreproducto"));
-			objFacturaDetalle.setQtCantidad(Integer.parseInt(request.getParameter("txtxcantidad")));
-			objFacturaDetalle.setPrecio(Double.parseDouble(request.getParameter("txtprecio")));
 			
-			Factura objNewFactura=Factura.RecargarFactura(objFactura,objFacturaDetalle);
-			return new ModelAndView("factura", "model", objNewFactura);
+			Factura.GrabarFactura(objFactura);
+			
+			ModelAndView mav = new ModelAndView("redirect:listarfacturas");
+            mav.addObject("mensaje",new String ("Factura registrada!!!"));
+            return mav;
+           
+		}else{
+				FacturaDetalle objFacturaDetalle=new FacturaDetalle();
+				objFacturaDetalle.setCodFactura(Integer.parseInt(request.getParameter("txtfactura")));
+				objFacturaDetalle.setCodProducto(Integer.parseInt(request.getParameter("idproducto")));
+				objFacturaDetalle.setProducto(request.getParameter("nombreproducto"));
+				objFacturaDetalle.setQtCantidad(Integer.parseInt(request.getParameter("txtxcantidad")));
+				objFacturaDetalle.setPrecio(Double.parseDouble(request.getParameter("txtprecio")));
+				
+				Factura objNewFactura=Factura.RecargarFactura(objFactura,objFacturaDetalle);
+				
+				ModelAndView mav = new ModelAndView("factura");
+			    mav.addObject("model",objNewFactura);
+			    mav.addObject("accion","0");
+			    return mav;
+				//return new ModelAndView("factura", "model", objNewFactura);
 		}
+		
     }
 	
-	
-	/*@RequestMapping(value="/agregarproducto")
-	public ModelAndView AgregarProducto(HttpServletRequest request, HttpServletResponse response)
+	/*@RequestMapping(value="/eliminaritem")
+	public ModelAndView EliminarItem(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, DAOExcepcion {
 	
-		System.out.println("agregarproducto");
-		FacturaDetalle objFacturaDetalle=new FacturaDetalle();
-		objFacturaDetalle.setCodFactura(3);
-		objFacturaDetalle.setCodProducto(3);
-		objFacturaDetalle.setQtCantidad(10);
-		objFacturaDetalle.setPrecio(12.36);
-		Factura.GrabarFacturaDetalle(objFacturaDetalle);
+		Factura objFactura=new Factura();
+		objFactura.setCodFactura(Integer.parseInt(request.getParameter("txtfactura")));
+		objFactura.setIntidCliente(Integer.parseInt(request.getParameter("hiddencliente")));
+		objFactura.setCliente(request.getParameter("txtCliente"));
+		objFactura.setIdPaciente(Integer.parseInt(request.getParameter("hiddenpaciente")));
+		objFactura.setPaciente(request.getParameter("txtpaciente"));
+		objFactura.setRuc(request.getParameter("txtruc"));
+		objFactura.setFeRegistro(request.getParameter("txtfecha"));
 		
-        return new ModelAndView("factura");
-
+		System.out.println("eliminar item");
+		
+		FacturaDetalle objFacturaDetalle=new FacturaDetalle();
+		objFacturaDetalle.setCodFactura(Integer.parseInt(request.getParameter("id")));
+		objFacturaDetalle.setCodProducto(Integer.parseInt(request.getParameter("item")));
+		
+		Factura.DeleteFacturaDetalle(objFacturaDetalle);
+		Factura objNewFactura=Factura.RecargarFactura2(objFactura);
+		return new ModelAndView("factura", "model", objNewFactura);
     }*/
+	
 }

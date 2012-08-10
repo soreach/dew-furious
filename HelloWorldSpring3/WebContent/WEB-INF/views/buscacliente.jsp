@@ -6,6 +6,46 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Busqueda de Clientes</title>
+<style type="text/css">
+#gradient-style
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 45px;
+	width: 480px;
+	text-align: left;
+	border-collapse: collapse;
+}
+#gradient-style th
+{
+	font-size: 13px;
+	font-weight: normal;
+	padding: 8px;
+	background: #b9c9fe url('table-images/gradhead.png') repeat-x;
+	border-top: 2px solid #d3ddff;
+	border-bottom: 1px solid #fff;
+	color: #039;
+}
+#gradient-style td
+{
+	padding: 8px; 
+	border-bottom: 1px solid #fff;
+	color: #669;
+	border-top: 1px solid #fff;
+	background: #e8edff url('table-images/gradback.png') repeat-x;
+}
+#gradient-style tfoot tr td
+{
+	background: #e8edff;
+	font-size: 12px;
+	color: #99c;
+}
+#gradient-style tbody tr:hover td
+{
+	background: #d0dafd url('table-images/gradhover.png') repeat-x;
+	color: #339;
+}
+</style>
 <script type="text/javascript" language="javascript">
 	function seleccionarcliente(codigo,nombre,paterno,materno){
 		window.opener.document.getElementById("hiddencliente").value=codigo;
@@ -15,18 +55,21 @@
 </script>
 </head>
 <body>
-<div class="center_content">
+	<div class="center_content">
 		<h1>Buscador de Clientes</h1> <p>
 		<form action="" method="get">
 		</form>
-		<table border="1">
-			<tr>
-				<th>Codigo</th>
-				<th>Nombre</th>
-				<th>Apellido Paterno</th>
-				<th>Apellido Materno</th>
-				<td>Seleccionar</td>
-			</tr>
+		<table id="gradient-style" summary="Meeting Results">
+			<thead>
+		    	<tr>
+		        	<th scope="col">Codigo</th>
+		            <th scope="col">Nombre</th>
+		            <th scope="col">Apellido Paterno</th>
+		            <th scope="col">Apellido Materno</th>
+		            <th scope="col">Seleccionar</th>
+		        </tr>
+	    	</thead>
+	    	<tbody>
 			<c:forEach items="${model.clientes}" var="prod" varStatus="i">
 			<tr>
 				<td>${prod.codigo}</td>
@@ -36,9 +79,10 @@
 				<td><a href="#" onclick='seleccionarcliente("${prod.codigo}","${prod.nombre}","${prod.apellidopaterno}","${prod.apellidomaterno}");'>Seleccionar</a></td>
 			</tr>
 			</c:forEach>
-			
+			</tbody>
 			
 		</table>
-		</div>
+	</div>
+	
 </body>
 </html>
