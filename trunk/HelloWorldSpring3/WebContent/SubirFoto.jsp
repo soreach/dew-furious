@@ -8,9 +8,11 @@
     import="java.io.*" %>
 <%
 
-File destino = new File("C:\\Users\\operador\\workspace\\HelloWorldSpring3\\WebContent\\Fotos\\");
-ServletRequestContext src = new ServletRequestContext(request);
 
+//File destino = new File(request.getContextPath()+"\\WebContent\\Fotos\\");
+File destino = new File("D:\\Eclipse\\HelloWorldSpring3\\WebContent\\Fotos\\");
+System.out.println(destino);
+ServletRequestContext src = new ServletRequestContext(request);
 if(ServletFileUpload.isMultipartContent(src)){
 	DiskFileItemFactory factory = new DiskFileItemFactory((1024*1024),destino);
 	ServletFileUpload upload = new  ServletFileUpload(factory);

@@ -12,8 +12,8 @@
 <link href="css/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
 <script src="js/jquery-ui-1.8.20.custom.min.js" type="text/javascript"
 	charset="utf-8"></script>
-	<title>Lista de Prospectos</title>
-	<script type="text/javascript" >
+	<title>Lista de Clientes</title>
+<script type="text/javascript" >
 	function confirmar(){
 		if(confirm("Desea realizar esta acción?")){
 			return true;
@@ -21,14 +21,14 @@
 			return false;
 		}
 	}
-	</script>
+</script>
 <style type="text/css">
 #gradient-style
 {
 	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
 	font-size: 12px;
 	margin: 45px;
-	width: 1000px;
+	width: 800px;
 	text-align: left;
 	border-collapse: collapse;
 }
@@ -71,13 +71,12 @@
 			</H1>
 	</div>
 	<div class="center_content">
-		<h1>Prospectos</h1>
+		<h1>Clientes</h1>
 		<form action="verRegistroCliente.jsp" method="get">
-			<input type="submit" name="btnNuevo" id="btnNuevo" value="Nuevo" />
 			<a href="Menu.jsp">Menu</a>
 		</form>
 		<table id="gradient-style" summary="Meeting Results">
-			<thead>
+		<thead>
 		    	<tr>
 		        	<th scope="col">Nombre</th>
 		            <th scope="col">Apellido Paterno</th>
@@ -85,11 +84,10 @@
 		            <th scope="col">Direccion</th>
 					<th scope="col">Telefono</th>
 					<th scope="col">Editar</th>
-					<th scope="col">Cliente</th>
 					<th scope="col">Eliminar</th>
 		        </tr>
 	    	</thead>
-			<tbody>
+	    	<tbody>
 			<c:forEach items="${model.clientes}" var="prod" varStatus="i">
 			<tr>
 				<td width="100">${prod.nombre}</td>
@@ -98,14 +96,12 @@
 				<td>${prod.direccion}</td>
 				<td>${prod.telefono}</td>
 				<td align="center"><a
-						href="editarCliente.jsp?id=${prod.codigo}"> <img
-							src="<%=request.getContextPath()%>/images/editar.jpg" alt="Editar" title="" border="0" onclick="return confirmar();" />
+						href="editarClienteC.jsp?id=${prod.codigo}"> <img
+							src="<%=request.getContextPath()%>/images/editar.jpg" alt="" title="" border="0" onclick="return confirmar();" />
 					</a></td>
-				<td><a href="CambiarCliente.jsp?id=${prod.codigo }" onclick="return confirmar();">Actualizar</a>
-				</td>
 				<td align="center"><a
-						href="eliminarCliente.jsp?id=${prod.codigo}"><img
-							src="<%=request.getContextPath()%>/images/delete.gif" alt="Eliminar" title="" border="0" onclick="return confirmar();"/></a>
+						href="eliminarClienteC.jsp?id=${prod.codigo}"><img
+							src="<%=request.getContextPath()%>/images/delete.gif" alt="" title="" border="0" onclick="return confirmar();" /></a>
 				</td>
 			</tr>
 			</c:forEach>

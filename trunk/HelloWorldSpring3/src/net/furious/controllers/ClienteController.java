@@ -31,11 +31,18 @@ public class ClienteController {
             throws ServletException, IOException, DAOExcepcion {
 		
 		List<Cliente> clientes = this.Cliente.listarprospectos();
-				
 		Map<String, Object> myModel = new HashMap<String, Object>();
 		myModel.put("clientes",clientes);
        
-        return new ModelAndView("listarcliente", "model", myModel);
+		String mensaje="";
+		if(request.getParameter("mensaje")!=null){
+			mensaje=request.getParameter("mensaje");
+		}
+		
+		ModelAndView mav = new ModelAndView("listarcliente");
+        mav.addObject("model",myModel);
+        mav.addObject("mensaje", mensaje);
+        return mav;
 
     }
 	
@@ -49,7 +56,7 @@ public class ClienteController {
 	@RequestMapping(value = "/registrarCliente", method = RequestMethod.POST)
 	public ModelAndView registroCliente(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		System.out.println("registrarCliente");
+		System.out.println("registrarProspecto");
 		
 		Cliente oModelCliente = new Cliente();
 		oModelCliente.setCodigo(request.getParameter("id"));
@@ -67,8 +74,11 @@ public class ClienteController {
 		} catch (Exception e) {
 			return new ModelAndView("/error", "mensaje", e.getMessage());
 		}
-
-		return new ModelAndView("redirect:listarcliente.jsp");
+		
+		ModelAndView mav = new ModelAndView("redirect:listarcliente.jsp");
+        mav.addObject("mensaje",new String ("Prospecto registrado!!!"));
+        return mav;
+		//return new ModelAndView("redirect:listarcliente.jsp");
 	}
 	
 	@RequestMapping(value = "/editarCliente", method = RequestMethod.GET)
@@ -103,7 +113,10 @@ public class ClienteController {
 			return new ModelAndView("/error", "mensaje", e.getMessage());
 		}
 
-		return new ModelAndView("redirect:listarcliente.jsp");
+		ModelAndView mav = new ModelAndView("redirect:listarcliente.jsp");
+        mav.addObject("mensaje",new String ("Prospecto modificado!!!"));
+        return mav;
+		//return new ModelAndView("redirect:listarcliente.jsp");
 	}
 	
 	@RequestMapping(value = "/eliminarCliente", method = RequestMethod.GET)
@@ -128,7 +141,10 @@ public class ClienteController {
 			return new ModelAndView("/error", "mensaje", e.getMessage());
 		}
 
-		return new ModelAndView("redirect:listarcliente.jsp");
+		ModelAndView mav = new ModelAndView("redirect:listarcliente.jsp");
+        mav.addObject("mensaje",new String ("Prospecto eliminado!!!"));
+        return mav;
+		//return new ModelAndView("redirect:listarcliente.jsp");
 	}
 
 	
@@ -155,7 +171,10 @@ public class ClienteController {
 			return new ModelAndView("/error", "mensaje", e.getMessage());
 		}
 
-		return new ModelAndView("redirect:listarcliente.jsp");
+		ModelAndView mav = new ModelAndView("redirect:listarcliente.jsp");
+        mav.addObject("mensaje",new String ("Cambio realizado!!!"));
+        return mav;
+	
 	}
 
 	@RequestMapping(value="/listarcliente2.jsp")
@@ -166,7 +185,15 @@ public class ClienteController {
 		Map<String, Object> myModel = new HashMap<String, Object>();
 		myModel.put("clientes",clientes);
 		
-        return new ModelAndView("listarclienteC", "model", myModel);
+		String mensaje="";
+		if(request.getParameter("mensaje")!=null){
+			mensaje=request.getParameter("mensaje");
+		}
+		
+		ModelAndView mav = new ModelAndView("listarclienteC");
+        mav.addObject("model",myModel);
+        mav.addObject("mensaje", mensaje);
+        return mav;
         
     }
 	
@@ -184,7 +211,10 @@ public class ClienteController {
 			return new ModelAndView("/error", "mensaje", e.getMessage());
 		}
 
-		return new ModelAndView("redirect:listarcliente2.jsp");
+		ModelAndView mav = new ModelAndView("redirect:listarcliente2.jsp");
+        mav.addObject("mensaje",new String ("Cliente eliminado!!!"));
+        return mav;
+        
 	}
 	
 	
@@ -220,6 +250,9 @@ public class ClienteController {
 			return new ModelAndView("/error", "mensaje", e.getMessage());
 		}
 
-		return new ModelAndView("redirect:listarcliente2.jsp");
+		ModelAndView mav = new ModelAndView("redirect:listarcliente2.jsp");
+        mav.addObject("mensaje",new String ("Cliente modificado!!!"));
+        return mav;
+		
 	}
 }
